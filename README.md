@@ -13,8 +13,9 @@ Releases are built and signed ad hoc on a Mac, not notarized; the cask clears
 the quarantine flag after installing so Gatekeeper opens the app.
 
 To replace a `chumux.app` that was installed by other means, add `--force` to
-`brew install`. Upgrading replaces only the app bundle. A running chumux keeps
-running until it is restarted, and the tmux sessions keep running too.
+`brew install`. Installing over a running chumux quits it, and an upgrade may
+do the same, so quit chumux first or open it again afterwards. tmux keeps every
+session and process, and chumux reattaches when it starts.
 
 `Casks/chumux.rb` and the release zips here are published by the chumux release
 script; do not edit the cask by hand.
