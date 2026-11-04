@@ -14,14 +14,14 @@ cask "chumux" do
   end
 
   depends_on arch: :arm64
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "chumux.app"
 
   # Releases are signed ad hoc, not notarized, so Gatekeeper would refuse the
   # quarantined app.
-  postflight do
-    system_command "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "#{appdir}/chumux.app"]
+  postflight_steps do
+    run "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "{{appdir}}/chumux.app"]
   end
 
   zap trash: "~/Library/Application Support/chumux"
